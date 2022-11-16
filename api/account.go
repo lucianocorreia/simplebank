@@ -2,7 +2,6 @@ package api
 
 import (
 	"database/sql"
-	"fmt"
 	"net/http"
 	"strconv"
 
@@ -12,7 +11,7 @@ import (
 
 type createAccountRequest struct {
 	Owner    string `json:"owner" binding:"required"`
-	Currency string `json:"currency" binding:"required,oneof=USD EUR BRL"`
+	Currency string `json:"currency" binding:"required,currency"`
 }
 
 func (s *Server) createAccount(ctx *gin.Context) {
@@ -79,8 +78,6 @@ func (s *Server) listAccount(ctx *gin.Context) {
 		Limit:  int32(req.Size),
 		Offset: int32((req.Page - 1) * req.Size),
 	}
-
-	fmt.Printf("%v", arg)
 
 	accounts, err := s.store.ListAccounts(ctx, arg)
 	if err != nil {
