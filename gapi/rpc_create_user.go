@@ -11,7 +11,7 @@ import (
 	"google.golang.org/grpc/status"
 )
 
-func (server *Server) CreateUer(ctx context.Context, req *pb.CreateUserRequest) (*pb.CreateUserResponse, error) {
+func (server *Server) CreateUser(ctx context.Context, req *pb.CreateUserRequest) (*pb.CreateUserResponse, error) {
 	hashedPassword, err := util.HashPassword(req.Password)
 	if err != nil {
 		return nil, status.Errorf(codes.Internal, "failed to hash password: %s", err)

@@ -12,7 +12,7 @@ import (
 	"google.golang.org/protobuf/types/known/timestamppb"
 )
 
-func (server *Server) LoginUer(ctx context.Context, req *pb.LoginUserRequest) (*pb.LoginUserResponse, error) {
+func (server *Server) LoginUser(ctx context.Context, req *pb.LoginUserRequest) (*pb.LoginUserResponse, error) {
 	user, err := server.store.GetUser(ctx, req.GetUsername())
 	if err != nil {
 		if err == sql.ErrNoRows {
